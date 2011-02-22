@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+    <script type="text/javascript" src="jquery.tree.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('ul.telefilms').tree({default_open_path : '0'});
+      });
+    </script>
+    <style>
+      ul li span { cursor : pointer; }
+    </style>
+    <title>jQuery tree plugin</title>
+  </head>
+
+  <body>
+
+    <div>
+
+      <ul class="telefilms">
+        <li>
+          Telefilm 1
+          <ul>
+            <li>
+              Serie 1
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 2
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 3
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 4
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="telefilms">
+        <li>
+          Telefilm 2
+          <ul>
+            <li>
+              Serie 1
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 2
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 3
+              <ul>
+                <li>
+                  <a href="#">Episode 1</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 2</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 3</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 4</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                    <li><a href="#">link 2</a></li>
+                    <li><a href="#">link 3</a></li>
+                    <li><a href="#">link 4</a></li>
+                    <li><a href="#">link 5</a></li>
+                    <li><a href="#">link 6</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 5</a>
+                  <ul>
+                    <li><a href="#">link 1</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Episode 6</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Serie 4
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+  </body>
+</html>
