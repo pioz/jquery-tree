@@ -3,6 +3,19 @@ jQuery-tree
 
 jQuery-tree is a jQuery plugin to make an HTML unorder list (<ul>) in a tree.
 
-The state of expand path of the tree is save in a cookie. To enable this features include the jQuery crop plugin.
+The state of expand path of the tree is save in a cookie. To enable this
+features include the jQuery cookie plugin (http://plugins.jquery.com/project/Cookie).
 
-See the example (index.html).
+-------------------------------------------------------------------------------
+
+See the example at http://pioz.github.com/jquery-tree/index.html
+
+-------------------------------------------------------------------------------
+
+Questions or problems?
+If you have any issues please add an issue on GitHub or fork the project and
+send a pull request.
+
+-------------------------------------------------------------------------------
+
+Copyright © 2011 Enrico Pilotto.
