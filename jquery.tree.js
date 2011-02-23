@@ -1,5 +1,5 @@
 // Require jQuery
-// Use jQuery.cookie if you want restore the previously expand path tree state
+// Use jQuery.cookie if you want to restore the previous expansion of the tree
 
 jQuery.fn.tree = function(options) {
 
@@ -8,49 +8,73 @@ jQuery.fn.tree = function(options) {
     /** Avaiable options are:
      *  - open_char: defeault character to display on open node in tree
      *  - close_char: defeault character to display on close node in tree
-     *  - default_open_path: if no cookie found the tree will be expand with this path
+     *  - default_expanded_paths_string: if no cookie found the tree will be expand with this paths string
     **/
     if(options === undefined || options === null)
       options = {};
     var open_char = options.open_char;
     var close_char = options.close_char;
-    var default_open_path = options.default_open_path;
+    var default_expanded_paths_string = options.default_expanded_paths_string;
     if(open_char === undefined || open_char === null)
       open_char = '&#9660;';
     if(close_char === undefined || close_char === null)
       close_char = '&#9658;';
-    if(default_open_path === undefined || default_open_path === null)
-      default_open_path = '0';
+    if(default_expanded_paths_string === undefined || default_expanded_paths_string === null)
+      default_expanded_paths_string = '0';
 
     // Save this
     var tree = jQuery(this);
 
-    // This function get the current expand path of tree
-    jQuery.fn.tree_path = function() {
+    // Get the expanded paths from the current state of tree
+    jQuery.fn.get_paths = function() {
+      var paths = [];
       var path = [];
-      var open_node = jQuery(this).find('li span.open');
-      for(var i = 0; i < open_node.length; i++) {
-        path.push(jQuery(open_node[i]).parent().prevAll().length);
+      var open_nodes = jQuery(this).find('li span.open');
+      var last_depth = null;
+      for(var i = 0; i < open_nodes.length; i++) {
+        var depth = jQuery(open_nodes[i]).parents('ul').length-1;
+        if((last_depth == null && depth > 0) || (depth > last_depth && depth-last_depth > 1))
+          continue;
+        var pos = jQuery(open_nodes[i]).parent().prevAll().length;
+        if(last_depth == null) {
+          path = [pos];
+        } else if(depth < last_depth) {
+          paths.push(path.join('/'));
+          var diff = last_depth - depth;
+          path.splice(path.length-diff-1, diff+1);
+          path.push(pos);
+        } else if(depth == last_depth) {
+          paths.push(path.join('/'));
+          path.splice(path.length-1, 1);
+          path.push(pos);
+        } else if(depth > last_depth) {
+          path.push(pos);
+        }
+        last_depth = depth;
       }
-      return path.join('/');
+      paths.push(path.join('/'));
+      return paths.join(',');
     };
 
     // This function expand the tree with 'path'
-    jQuery.fn.tree_open = function(path) {
-      if(path === null || path === undefined)
-        path = default_open_path;
-      var c = path.split('/');
-      var obj = jQuery(this);
-      for(var i = 0; i < c.length; i++) {
-        obj = jQuery(obj.children('li').children('ul')[c[i]]);
-        obj.show();
-        obj.parent().children('span').attr('class', 'open');
-        obj.parent().children('span').html(open_char);
+    jQuery.fn.tree_open = function(paths_string) {
+      if(paths_string === null || paths_string === undefined)
+        paths_string = default_expanded_paths_string;
+      var paths = paths_string.split(',');
+      for(var i = 0; i < paths.length; i++) {
+        var obj = jQuery(this);
+        var path = paths[i].split('/');
+        for(var j = 0; j < path.length; j++) {
+          obj = jQuery(obj.children('li').children('ul')[path[j]]);
+          obj.show();
+          obj.parent().children('span').attr('class', 'open');
+          obj.parent().children('span').html(open_char);
+        }
       }
     };
 
     // Make a tree
-    jQuery(this).find('li').has('ul').prepend('<span class="close">' + close_char + '</span>');
+    jQuery(this).find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
     jQuery(this).find('ul').hide();
     // Restore cookie expand path
     try { tree.tree_open(jQuery.cookie(tree.attr('class'))); }
@@ -66,8 +90,7 @@ jQuery.fn.tree = function(options) {
         jQuery(this).attr('class', 'open');
         jQuery(this).html(open_char);
       }
-      try { jQuery.cookie(tree.attr('class'), tree.tree_path()); }
-      catch(e) {}
+      jQuery.cookie(tree.attr('class'), tree.get_paths());
     });
   }
 }
