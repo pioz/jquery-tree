@@ -74,23 +74,25 @@ jQuery.fn.tree = function(options) {
   };
 
   for(var i = 0; i < this.length; i++) {
-    // Make a tree
-    this[i].find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
-    this[i].find('ul').hide();
-    // Restore cookie expand path
-    jQuery(this[i]).restore_paths();
-    // Click event
-    jQuery(this[i]).find('span').live('click', {tree : this[i]}, function(e) {
-      if (jQuery(this).attr('class') == 'open') {
-        jQuery(this).parent().children('ul').hide('slow');
-        jQuery(this).attr('class', 'close');
-        jQuery(this).html(close_char);
-      } else if (jQuery(this).attr('class') == 'close') {
-        jQuery(this).parent().children('ul').show('slow');
-        jQuery(this).attr('class', 'open');
-        jQuery(this).html(open_char);
-      }
-      jQuery(e.data.tree).save_paths();
-    });
+    if(this[i].tagName === 'UL') {
+      // Make a tree
+      $(this[i]).find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
+      $(this[i]).find('ul').hide();
+      // Restore cookie expand path
+      jQuery(this[i]).restore_paths();
+      // Click event
+      jQuery(this[i]).find('span').live('click', {tree : this[i]}, function(e) {
+        if (jQuery(this).attr('class') == 'open') {
+          jQuery(this).parent().children('ul').hide('slow');
+          jQuery(this).attr('class', 'close');
+          jQuery(this).html(close_char);
+        } else if (jQuery(this).attr('class') == 'close') {
+          jQuery(this).parent().children('ul').show('slow');
+          jQuery(this).attr('class', 'open');
+          jQuery(this).html(open_char);
+        }
+        jQuery(e.data.tree).save_paths();
+      });
+    }
   }
 }
