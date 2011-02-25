@@ -73,14 +73,14 @@ jQuery.fn.tree = function(options) {
     }
   };
 
-  // Make a tree
-  this.find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
-  this.find('ul').hide();
-  // Restore cookie expand path
   for(var i = 0; i < this.length; i++) {
+    // Make a tree
+    this[i].find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
+    this[i].find('ul').hide();
+    // Restore cookie expand path
     jQuery(this[i]).restore_paths();
     // Click event
-    jQuery(this[i]).find('span').live('click', {super : this[i]}, function(e) {
+    jQuery(this[i]).find('span').live('click', {tree : this[i]}, function(e) {
       if (jQuery(this).attr('class') == 'open') {
         jQuery(this).parent().children('ul').hide('slow');
         jQuery(this).attr('class', 'close');
@@ -90,7 +90,7 @@ jQuery.fn.tree = function(options) {
         jQuery(this).attr('class', 'open');
         jQuery(this).html(open_char);
       }
-      jQuery(e.data.super).save_paths();
+      jQuery(e.data.tree).save_paths();
     });
   }
 }
