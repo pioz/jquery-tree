@@ -76,8 +76,8 @@ jQuery.fn.tree = function(options) {
   for(var i = 0; i < this.length; i++) {
     if(this[i].tagName === 'UL') {
       // Make a tree
-      $(this[i]).find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
-      $(this[i]).find('ul').hide();
+      jQuery(this[i]).find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
+      jQuery(this[i]).find('ul').hide();
       // Restore cookie expand path
       jQuery(this[i]).restore_paths();
       // Click event
