@@ -31,7 +31,7 @@ jQuery.fn.tree = function(options) {
       var depth = jQuery(open_nodes[i]).parents('ul').length-1;
       if((last_depth == null && depth > 0) || (depth > last_depth && depth-last_depth > 1))
         continue;
-      var pos = jQuery(open_nodes[i]).parent().prevAll().length;
+      var pos = jQuery(open_nodes[i]).parent().prevAll(':has(">ul")').length;
       if(last_depth == null) {
         path = [pos];
       } else if(depth < last_depth) {
