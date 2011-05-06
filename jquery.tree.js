@@ -62,13 +62,14 @@ jQuery.fn.tree = function(options) {
       paths_string = default_expanded_paths_string;
     var paths = paths_string.split(',');
     for(var i = 0; i < paths.length; i++) {
-      var obj = jQuery(this);
       var path = paths[i].split('/');
+      var obj = jQuery(this);
       for(var j = 0; j < path.length; j++) {
-        obj = jQuery(obj.children('li').children('ul')[path[j]]);
+        obj = jQuery(obj.children('li')[path[j]]);
+        obj.children('span').attr('class', 'open');
+        obj.children('span').html(open_char);
+        obj = obj.children('ul')
         obj.show();
-        obj.parent().children('span').attr('class', 'open');
-        obj.parent().children('span').html(open_char);
       }
     }
   };
