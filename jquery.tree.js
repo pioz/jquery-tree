@@ -4,19 +4,22 @@
 jQuery.fn.tree = function(options) {
 
   // Setup default options
-  /** Avaiable options are:
-   *  - open_char: defeault character to display on open node in tree
-   *  - close_char: defeault character to display on close node in tree
-   *  - default_expanded_paths_string: if no cookie found the tree will be expand with this paths string (default '0', use 'all' to expand all children)
+  /* Avaiable options are:
+   *  - open_char: defeault UTF8 character on open node.
+   *  - close_char: defeault UTF8 character on close node.
+   *  - default_expanded_paths_string: if no cookie found the tree will be expand with this paths string (default '')
+   *      To expand all children use 'all'.
+   *      To close all the tree use ''.
+   *      To expand the first child and the second child of the first child use '0/1'
    *  - only_one: if this option is true only one child will be expanded at time (default false)
-   *  - animation: animation used to expand child (default 'slow')
-  **/
+   *  - animation: animation used to expand a child (default 'slow')
+   */
 
   if(options === undefined || options === null) options = {};
   var default_options = {
     open_char : '&#9660;',
     close_char : '&#9658;',
-    default_expanded_paths_string : '0',
+    default_expanded_paths_string : '',
     only_one : false,
     animation : 'slow'
   };
