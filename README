@@ -17,7 +17,7 @@ You can make an UL in a tree with: $('ul').tree();
 Avaiable options are:
   *  open_char: defeault UTF8 character on open node.
   *  close_char: defeault UTF8 character on close node.
-  *  default_expanded_paths_string: if no cookie found the tree will be expand with this paths string (default '')
+  *  default_expanded_paths_string: if no cookie found the tree will be expanded with this paths string (default '')
        To expand all children use 'all'.
        To close all the tree use ''.
        To expand the first child and the second child of the first child use '0/1'
