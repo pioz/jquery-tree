@@ -7,19 +7,21 @@ jQuery.fn.tree = function(options) {
   /** Avaiable options are:
    *  - open_char: defeault character to display on open node in tree
    *  - close_char: defeault character to display on close node in tree
-   *  - default_expanded_paths_string: if no cookie found the tree will be expand with this paths string
+   *  - default_expanded_paths_string: if no cookie found the tree will be expand with this paths string (default '0', use 'all' to expand all children)
+   *  - only_one: if this option is true only one child will be expanded at time (default false)
+   *  - animation: animation used to expand child (default 'slow')
   **/
-  if(options === undefined || options === null)
-    options = {};
-  var open_char = options.open_char;
-  var close_char = options.close_char;
-  var default_expanded_paths_string = options.default_expanded_paths_string;
-  if(open_char === undefined || open_char === null)
-    open_char = '&#9660;';
-  if(close_char === undefined || close_char === null)
-    close_char = '&#9658;';
-  if(default_expanded_paths_string === undefined || default_expanded_paths_string === null)
-    default_expanded_paths_string = '0';
+
+  if(options === undefined || options === null) options = {};
+  var default_options = {
+    open_char : '&#9660;',
+    close_char : '&#9658;',
+    default_expanded_paths_string : '0',
+    only_one : false,
+    animation : 'slow'
+  };
+  var o = {};
+  jQuery.extend(o, default_options, options);
 
   // Get the expanded paths from the current state of tree
   jQuery.fn.save_paths = function() {
@@ -57,40 +59,59 @@ jQuery.fn.tree = function(options) {
   jQuery.fn.restore_paths = function() {
     var paths_string = null;
     try { paths_string = jQuery.cookie(this.attr('class')); }
-    catch(e) { paths_string = default_expanded_paths_string; }
-    if(paths_string === null || paths_string === undefined)
-      paths_string = default_expanded_paths_string;
-    var paths = paths_string.split(',');
-    for(var i = 0; i < paths.length; i++) {
-      var path = paths[i].split('/');
-      var obj = jQuery(this);
-      for(var j = 0; j < path.length; j++) {
-        obj = jQuery(obj.children('li')[path[j]]);
-        obj.children('span').attr('class', 'open');
-        obj.children('span').html(open_char);
-        obj = obj.children('ul')
-        obj.show();
+    catch(e) {}
+    if(paths_string === null || paths_string === undefined) paths_string = o.default_expanded_paths_string;
+    if(paths_string == 'all') {
+      jQuery(this).find('span.jtree').open();
+    } else {
+      var paths = paths_string.split(',');
+      for(var i = 0; i < paths.length; i++) {
+        var path = paths[i].split('/');
+        var obj = jQuery(this);
+        for(var j = 0; j < path.length; j++) {
+          obj = jQuery(obj.children('li')[path[j]]);
+          obj.children('span.jtree').open();
+          obj = obj.children('ul')
+        }
       }
+    }
+  };
+
+  // Open a child
+  jQuery.fn.open = function(animate) {
+    if(jQuery(this).hasClass('jtree')) {
+      jQuery(this).parent().children('ul').show(animate);
+      jQuery(this).removeClass('close');
+      jQuery(this).addClass('open');
+      jQuery(this).html(o.open_char);
+    }
+  };
+
+  // Close a child
+  jQuery.fn.close = function(animate) {
+    if(jQuery(this).hasClass('jtree')) {
+      jQuery(this).parent().children('ul').hide(animate);
+      jQuery(this).removeClass('open');
+      jQuery(this).addClass('close');
+      jQuery(this).html(o.close_char);
     }
   };
 
   for(var i = 0; i < this.length; i++) {
     if(this[i].tagName === 'UL') {
       // Make a tree
-      jQuery(this[i]).find('li').has('ul').prepend('<span class="close" style="cursor:pointer;">' + close_char + '</span>');
+      jQuery(this[i]).find('li').has('ul').prepend('<span class="jtree close" style="cursor:pointer;">' + o.close_char + '</span>');
       jQuery(this[i]).find('ul').hide();
       // Restore cookie expand path
       jQuery(this[i]).restore_paths();
       // Click event
-      jQuery(this[i]).find('span').live('click', {tree : this[i]}, function(e) {
-        if (jQuery(this).attr('class') == 'open') {
-          jQuery(this).parent().children('ul').hide('slow');
-          jQuery(this).attr('class', 'close');
-          jQuery(this).html(close_char);
-        } else if (jQuery(this).attr('class') == 'close') {
-          jQuery(this).parent().children('ul').show('slow');
-          jQuery(this).attr('class', 'open');
-          jQuery(this).html(open_char);
+      jQuery(this[i]).find('li > span.jtree').live('click', {tree : this[i]}, function(e) {
+        if (jQuery(this).hasClass('open')) {
+          jQuery(this).close(o.animation);
+	  if(o.only_one) jQuery(this).parent('li').siblings().children('span').close(o.animation);
+        } else if (jQuery(this).hasClass('close')) {
+          jQuery(this).open(o.animation);
+          if(o.only_one) jQuery(this).parent('li').siblings().children('span').close(o.animation);
         }
         jQuery(e.data.tree).save_paths();
       });
