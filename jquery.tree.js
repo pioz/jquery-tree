@@ -65,7 +65,7 @@ jQuery.fn.tree = function(options) {
     catch(e) {}
     if(paths_string === null || paths_string === undefined) paths_string = o.default_expanded_paths_string;
     if(paths_string == 'all') {
-      jQuery(this).find('span.jtree').open();
+      jQuery(this).find('span.jtree-arrow').open();
     } else {
       var paths = paths_string.split(',');
       for(var i = 0; i < paths.length; i++) {
@@ -73,7 +73,7 @@ jQuery.fn.tree = function(options) {
         var obj = jQuery(this);
         for(var j = 0; j < path.length; j++) {
           obj = jQuery(obj.children('li')[path[j]]);
-          obj.children('span.jtree').open();
+          obj.children('span.jtree-arrow').open();
           obj = obj.children('ul')
         }
       }
@@ -82,7 +82,7 @@ jQuery.fn.tree = function(options) {
 
   // Open a child
   jQuery.fn.open = function(animate) {
-    if(jQuery(this).hasClass('jtree')) {
+    if(jQuery(this).hasClass('jtree-arrow')) {
       jQuery(this).parent().children('ul').show(animate);
       jQuery(this).removeClass('close');
       jQuery(this).addClass('open');
@@ -92,7 +92,7 @@ jQuery.fn.tree = function(options) {
 
   // Close a child
   jQuery.fn.close = function(animate) {
-    if(jQuery(this).hasClass('jtree')) {
+    if(jQuery(this).hasClass('jtree-arrow')) {
       jQuery(this).parent().children('ul').hide(animate);
       jQuery(this).removeClass('open');
       jQuery(this).addClass('close');
@@ -100,22 +100,36 @@ jQuery.fn.tree = function(options) {
     }
   };
 
+  // Click event on <span class="jtree-arrow"></span>
+  jQuery.fn.click_event = function() {
+    var button = jQuery(this);
+    if(button.hasClass('jtree-arrow')) {
+      if(button.hasClass('open')) {
+        button.close(o.animation);
+        if(o.only_one) button.parent('li').siblings().children('span').close(o.animation);
+      } else if(button.hasClass('close')) {
+        button.open(o.animation);
+        if(o.only_one) button.parent('li').siblings().children('span').close(o.animation);
+      }
+    }
+  };
+
   for(var i = 0; i < this.length; i++) {
     if(this[i].tagName === 'UL') {
       // Make a tree
-      jQuery(this[i]).find('li').has('ul').prepend('<span class="jtree close" style="cursor:pointer;">' + o.close_char + '</span>');
+      jQuery(this[i]).find('li').has('ul').prepend('<span class="jtree-arrow close" style="cursor:pointer;">' + o.close_char + '</span>');
       jQuery(this[i]).find('ul').hide();
       // Restore cookie expand path
       jQuery(this[i]).restore_paths();
-      // Click event
-      jQuery(this[i]).find('li > span.jtree').live('click', {tree : this[i]}, function(e) {
-        if (jQuery(this).hasClass('open')) {
-          jQuery(this).close(o.animation);
-	  if(o.only_one) jQuery(this).parent('li').siblings().children('span').close(o.animation);
-        } else if (jQuery(this).hasClass('close')) {
-          jQuery(this).open(o.animation);
-          if(o.only_one) jQuery(this).parent('li').siblings().children('span').close(o.animation);
-        }
+      // Click event for arrow
+      jQuery(this[i]).find('li > span.jtree-arrow').on('click', {tree : this[i]}, function(e) {
+        jQuery(this).click_event();
+        jQuery(e.data.tree).save_paths();
+      });
+      // Click event for 'jtree-button'
+      jQuery(this[i]).find('li .jtree-button').on('click', {tree : this[i]}, function(e) {
+        var arrow = jQuery(this).closest('li').children('span.jtree-arrow');
+        arrow.click_event();
         jQuery(e.data.tree).save_paths();
       });
     }
