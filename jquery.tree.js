@@ -54,14 +54,19 @@ jQuery.fn.tree = function(options) {
       last_depth = depth;
     }
     paths.push(path.join('/'));
-    try { jQuery.cookie(this.attr('class'), paths.join(',')); }
+    // Save state to cookie
+    var cookie_key = this.data('cookie');
+    if(cookie_key === null) cookie_key = 'jtree-cookie';
+    try { jQuery.cookie(cookie_key, paths.join(',')); }
     catch(e) {}
   };
 
   // This function expand the tree with 'path'
   jQuery.fn.restore_paths = function() {
     var paths_string = null;
-    try { paths_string = jQuery.cookie(this.attr('class')); }
+    var cookie_key = this.data('cookie');
+    if(cookie_key === null) cookie_key = 'jtree-cookie';
+    try { paths_string = jQuery.cookie(cookie_key); }
     catch(e) {}
     if(paths_string === null || paths_string === undefined) paths_string = o.default_expanded_paths_string;
     if(paths_string == 'all') {
@@ -106,10 +111,10 @@ jQuery.fn.tree = function(options) {
     if(button.hasClass('jtree-arrow')) {
       if(button.hasClass('open')) {
         button.close(o.animation);
-        if(o.only_one) button.parent('li').siblings().children('span').close(o.animation);
+        if(o.only_one) button.closest('li').siblings().children('span.jtree-arrow').close(o.animation);
       } else if(button.hasClass('close')) {
         button.open(o.animation);
-        if(o.only_one) button.parent('li').siblings().children('span').close(o.animation);
+        if(o.only_one) button.closest('li').siblings().children('span.jtree-arrow').close(o.animation);
       }
     }
   };
