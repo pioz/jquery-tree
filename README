@@ -29,6 +29,9 @@ Avaiable options are:
 You can bind a click event to expand/collapse a branch by adding the class
 'jtree-button' on a tag inside the branch.
 
+You can call the method 'expand(animation)' or 'collapse(animation)' to expand or collapse the tree.
+Animation can be null to use default animation, 'none' to not use animation.
+
 To save the state of the tree expansion when there are many trees in the same
 page, you have to specify a cookie key different for every tree. To do this
 add the data attribute data-cookie="unique-key" to UL tag.

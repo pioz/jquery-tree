@@ -85,10 +85,28 @@ jQuery.fn.tree = function(options) {
     }
   };
 
+  // Expand the tree
+  jQuery.fn.expand = function(animation) {
+    if (animation == 'none')
+      animation = undefined;
+    else if (!animation)
+      animation = o.animation;
+    jQuery(this).find('.jtree-arrow').open(animation);
+  };
+
+  // Collapse the tree
+  jQuery.fn.collapse = function(animation) {
+    if (animation == 'none')
+      animation = undefined;
+    else if (!animation)
+      animation = o.animation;
+    jQuery(this).find('.jtree-arrow').close(animation);
+  };
+
   // Open a child
-  jQuery.fn.open = function(animate) {
+  jQuery.fn.open = function(animation) {
     if(jQuery(this).hasClass('jtree-arrow')) {
-      jQuery(this).parent().children('ul').show(animate);
+      jQuery(this).parent().children('ul').show(animation);
       jQuery(this).removeClass('close');
       jQuery(this).addClass('open');
       jQuery(this).html(o.open_char);
@@ -96,9 +114,9 @@ jQuery.fn.tree = function(options) {
   };
 
   // Close a child
-  jQuery.fn.close = function(animate) {
+  jQuery.fn.close = function(animation) {
     if(jQuery(this).hasClass('jtree-arrow')) {
-      jQuery(this).parent().children('ul').hide(animate);
+      jQuery(this).parent().children('ul').hide(animation);
       jQuery(this).removeClass('open');
       jQuery(this).addClass('close');
       jQuery(this).html(o.close_char);
