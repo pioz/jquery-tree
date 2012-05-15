@@ -10,11 +10,9 @@
         $('ul.telefilms').tree({default_expanded_paths_string : '0/0/0,0/0/2,0/2/4'});
         $('.expand_button').on('click', function() {
           $('ul.telefilms.first').expand('none');
-          return false;
         });
         $('.collapse_button').on('click', function() {
           $('ul.telefilms.first').collapse();
-          return false;
         });
       });
     </script>
@@ -25,8 +23,8 @@
 
     <div>
 
-      <a href="" class="expand_button">Open all</a>
-      <a href="" class="collapse_button">Close all</a>
+      <a href="#" class="expand_button">Open all</a>
+      <a href="#" class="collapse_button">Close all</a>
 
       <ul class="telefilms first" data-cookie="cookie1"> <!-- Use 'cookie1' as unique key to save cookie only for this tree -->
         <li>
