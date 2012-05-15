@@ -8,6 +8,14 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $('ul.telefilms').tree({default_expanded_paths_string : '0/0/0,0/0/2,0/2/4'});
+        $('.expand_button').on('click', function() {
+          $('ul.telefilms.first').expand('none');
+          return false;
+        });
+        $('.collapse_button').on('click', function() {
+          $('ul.telefilms.first').collapse();
+          return false;
+        });
       });
     </script>
     <title>jQuery tree plugin</title>
@@ -17,7 +25,10 @@
 
     <div>
 
-      <ul class="telefilms" data-cookie="cookie1"> <!-- Use 'cookie1' as unique key to save cookie only for this tree -->
+      <a href="" class="expand_button">Open all</a>
+      <a href="" class="collapse_button">Close all</a>
+
+      <ul class="telefilms first" data-cookie="cookie1"> <!-- Use 'cookie1' as unique key to save cookie only for this tree -->
         <li>
           Telefilm 1
           <ul>
@@ -218,7 +229,7 @@
         </li>
       </ul>
 
-      <ul class="telefilms" data-cookie="cookie2"> <!-- Use 'cookie2' as unique key to save cookie only for this tree -->
+      <ul class="telefilms second" data-cookie="cookie2"> <!-- Use 'cookie2' as unique key to save cookie only for this tree -->
         <li>
           Telefilm 2
           <ul>
