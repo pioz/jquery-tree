@@ -1,13 +1,7 @@
 // Require jQuery
 // Use jQuery.cookie if you want to restore the previous expansion of the tree
 
-// changelog (May 17, 2012 - @stecb):
-// - added $ shortcut (save precious bits)
-// - removed some 'var' keywords (just need 1 var definition and then separate vars by ',' with a ';' at the end)
-// - fixed animation on expande all
-// - added some various improvements on the code (and reductions)
-
-!function($){
+!function($) {
 
   $.fn.tree = function(options) {
 
