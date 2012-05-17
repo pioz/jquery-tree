@@ -9,7 +9,7 @@
       $(document).ready(function() {
         $('ul.telefilms').tree({default_expanded_paths_string : '0/0/0,0/0/2,0/2/4'});
         $('.expand_button').on('click', function() {
-          $('ul.telefilms.first').expand('none');
+          $('ul.telefilms.first').expand();
         });
         $('.collapse_button').on('click', function() {
           $('ul.telefilms.first').collapse();
