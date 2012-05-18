@@ -44,4 +44,7 @@ send a pull request.
 
 -------------------------------------------------------------------------------
 
-Copyright © 2011 Enrico Pilotto.
+Copyright © 2012 Enrico Pilotto.
+
+Contributors:
+  - Stefano Ceschi Berrini (@stecb)
