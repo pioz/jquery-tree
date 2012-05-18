@@ -1,7 +1,7 @@
 jQuery-tree
 ===========
 
-jQuery-tree is a jQuery plugin to make an HTML unorder list (<ul>) in a tree.
+jQuery-tree is a jQuery plugin to make an HTML unorder list (`<ul>`) in a tree.
 
 The state of the tree expansion will be saved in a cookie. To enable this
 feature include the jQuery cookie plugin (http://plugins.jquery.com/project/Cookie).
@@ -14,7 +14,7 @@ See the example at http://pioz.github.com/jquery-tree/index.html
 
 USAGE:
 
-You can make an UL in a tree with: $('ul').tree();
+You can make an UL in a tree with: `$('ul').tree();`
 
 Avaiable options are:
   *  open_char: defeault UTF8 character on open node.
@@ -34,7 +34,7 @@ Animation can be null to use default animation, 'none' to not use animation.
 
 To save the state of the tree expansion when there are many trees in the same
 page, you have to specify a cookie key different for every tree. To do this
-add the data attribute data-cookie="unique-key" to UL tag.
+add the data attribute `data-cookie="unique-key"` to UL tag.
 
 -------------------------------------------------------------------------------
 
@@ -44,4 +44,7 @@ send a pull request.
 
 -------------------------------------------------------------------------------
 
-Copyright © 2011 Enrico Pilotto.
+Copyright © 2012 [Enrico Pilotto (@pioz)](http://github.com/pioz).
+
+Contributors:
+  - [Stefano Ceschi Berrini (@stecb)](http://github.com/stecb)
