@@ -44,7 +44,7 @@ send a pull request.
 
 -------------------------------------------------------------------------------
 
-Copyright © 2012 Enrico Pilotto.
+Copyright © 2012 [Enrico Pilotto (@pioz)](http://github.com/pioz).
 
 Contributors:
-  - Stefano Ceschi Berrini (@stecb)
+  - [Stefano Ceschi Berrini (@stecb)](http://github.com/stecb)
