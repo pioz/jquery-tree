@@ -87,11 +87,15 @@
       }
     };
 
-    // Expand the tree
+    // Expand the tree (animation bug fixed - @stecb)
     $.fn.expand = function(animation) {
       animation = (animation == 'none') ? undefined : (!animation) ? o.animation : animation;
-      $(this).find('.jtree-arrow:not(:first)').open(undefined); // trick for expand all animation - @stecb
-      $(this).find('.jtree-arrow:first').open(animation);
+      // find each :first-child .jtree-arrow.close element (we don't need to care about open elements, they're already open...)
+      elems = $(this).find('.jtree-arrow.close:first-child');
+      // their childs .jtree-arrow.close need to be opened without animation (!IMPORTANT!)
+      elems.siblings('ul').find('.jtree-arrow.close').open(undefined);
+      // the :first-child elements now can be opened with animation (height is known now)
+      elems.open(animation);
     };
 
     // Collapse the tree
