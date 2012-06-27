@@ -17,7 +17,7 @@
      *  - animation: animation used to expand a child (default 'slow')
      */
 
-    if(options === undefined || options === null) options = {};
+    if(!options) options = {};
     var default_options = {
       open_char                     : '&#9660;',
       close_char                    : '&#9658;',
@@ -58,19 +58,19 @@
       paths.push(path.join('/'));
       // Save state to cookie
       var cookie_key = this.data('cookie');
-      if(cookie_key === null) cookie_key = 'jtree-cookie';
+      if(!cookie_key) cookie_key = 'jtree-cookie';
       try { $.cookie(cookie_key, paths.join(',')); }
       catch(e) {}
     };
 
     // This function expand the tree with 'path'
     $.fn.restore_paths = function() {
-      var paths_string = null,
-          cookie_key = this.data('cookie');
-      if(cookie_key === null) cookie_key = 'jtree-cookie';
+      var paths_string = null;
+      var cookie_key = this.data('cookie');
+      if(!cookie_key) cookie_key = 'jtree-cookie';
       try { paths_string = $.cookie(cookie_key); }
       catch(e) {}
-      if(paths_string === null || paths_string === undefined) paths_string = o.default_expanded_paths_string;
+      if(!paths_string) paths_string = o.default_expanded_paths_string;
       if(paths_string == 'all') {
         $(this).find('span.jtree-arrow').open();
       } else {
